@@ -1,6 +1,8 @@
 # SBG-TIR OTTER Level 1 Radiance and Brightness Temperature
 
-Mike Smyth, NASA Jet Propulsion Laboratory
+Mike Smyth (he/him)<br>
+[mike.m.smyth@jpl.nasa.gov](mailto:mike.m.smyth@jpl.nasa.gov)<br>
+NASA Jet Propulsion Laboratory
 
 Tom Logan, NASA Jet Propulsion Laboratory
 
