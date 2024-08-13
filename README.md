@@ -1,9 +1,10 @@
-# SBG-TIR OTTER Level 1 Radiance and Brightness Temperature
+# SBG-TIR OTTER Level 1 Brightness Temperature
 
 This will be the repository for the Surface Biology and Geology Thermal Infrared (SBG-TIR) OTTER radiance and brightness temperature data product algorithm.
 
 This algorithm will utilize the [VICAR](https://github.com/NASA-AMMOS/VICAR) image processing framework.
 
+The SBG collection 1 level 1 brightness temperature data product is being developed based on the [ECOsystem Spaceborne Thermal Radiometer Experiment on Space Station (ECOSTRESS) collection 3 level 1 radiance data product](https://github.com/ECOSTRESS-Collection-3/ECOv003-L1-RAD).
 
 Mike M. Smyth (he/him)<br>
 [mike.m.smyth@jpl.nasa.gov](mailto:mike.m.smyth@jpl.nasa.gov)<br>
