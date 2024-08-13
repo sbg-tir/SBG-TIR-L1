@@ -1,5 +1,10 @@
 # SBG-TIR OTTER Level 1 Radiance and Brightness Temperature
 
+This will be the repository for the Surface Biology and Geology Thermal Infrared (SBG-TIR) OTTER radiance and brightness temperature data product algorithm.
+
+This algorithm will utilize the [VICAR](https://github.com/NASA-AMMOS/VICAR) image processing framework.
+
+
 Mike M. Smyth (he/him)<br>
 [mike.m.smyth@jpl.nasa.gov](mailto:mike.m.smyth@jpl.nasa.gov)<br>
 NASA Jet Propulsion Laboratory
@@ -8,27 +13,9 @@ Thomas L. Logan (he/him)<br>
 [thomas.l.logan@jpl.nasa.gov](mailto:thomas.l.logan@jpl.nasa.gov)<br>
 NASA Jet Propulsion Laboratory
 
-This will be the repository for the Surface Biology and Geology Thermal Infrared (SBG-TIR) OTTER radiance and brightness temperature data product algorithm.
-
-This algorithm will utilize the [VICAR](https://github.com/NASA-AMMOS/VICAR) image processing framework.
-
-# SBG-TIR OTTER L1 TB & RAD Data Products
-
-This is the main repository for the Suface Biology and Geology Thermal Infrared (SBG-TIR) level 3 & 4 evapotranspiration data product generation software. 
-
-Thomas Logan
-[Thomas.L.Logan@jpl.nasa.gov](mailto:Thomas.L.Logan@jpl.nasa.gov)<br>
-NASA Jet Propulsion Laboratory 329G
-
-Michael Smyth
-[Michael.M.Smyth@jpl.nasa.gov](mailto:Michael.M.Smyth@jpl.nasa.gov)<br>
-NASA Jet Propulsion Laboratory 329G
-
 William Johnson
 [William.R.Johnson@jpl.nasa.gov](mailto:William.R.Johnson@jpl.nasa.gov)<br>
 NASA Jet Propulsion Laboratory 329F
-
-
 
 ## 1. Introduction
 
