@@ -20,3 +20,4 @@ __pycache__/
 Makefile.local
 micromamba
 sbg_environment_installed.yml
+sbg-tir-l1-docker-*.tar.gz
