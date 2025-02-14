@@ -2,7 +2,7 @@
 import pytest
 import os
 try:
-    from sbg import *
+    from sbg_tir_l1 import *
     have_swig = True
 except ImportError:
     have_swig = False

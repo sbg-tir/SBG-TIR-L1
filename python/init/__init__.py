@@ -4,7 +4,7 @@
 import os
 import glob
 from geocal import *
-from sbg_swig import *
+from sbg_tir_l1_swig import *
 
 for i in glob.glob(os.path.dirname(__file__) + "/*.py"):
     mname = os.path.basename(i).split('.')[0]

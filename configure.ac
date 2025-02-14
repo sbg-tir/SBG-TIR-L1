@@ -42,6 +42,17 @@ AC_DOXYGEN(optional, cannot_build, default_search)
 SBG_TIR_L1_SOURCE_DIRECTORY
 
 #=================================================================
+# Location of dem and spice data
+
+AC_ARG_WITH([srtm-l2],
+AS_HELP_STRING([--with-srtm-l2@<:@=DIR@:>@], [give directory where SRTM L2 data can be found]), [ ac_srtml2_dir="$withval" ], [ ac_srtml2_dir="/home/smyth/sandbox/sbg_ancillary/srtm_v3_dem_L2"] )
+AC_SUBST([srtml2dir], ["$ac_srtml2_dir"])
+
+AC_ARG_WITH([spice-data],
+AS_HELP_STRING([--with-spice-data@<:@=DIR@:>@], [give directory where SPICE data can be found]), [ ac_spicedata_dir="$withval" ], [ ac_spicedata_dir="/home/smyth/sandbox/sbg_ancillary/spice_data/cspice"] )
+AC_SUBST([spicedatadir], ["$ac_spicedata_dir"])
+
+#=================================================================
 # Option to bypass running SWIG to update SWIG wrappers. The SWIG
 # wrappers can take a bit of time to create and compile, so if you
 # aren't working directly with them it can be useful to turn off during

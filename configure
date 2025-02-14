@@ -670,6 +670,8 @@ HAVE_SWIG_FALSE
 HAVE_SWIG_TRUE
 SWIG_LIB
 SWIG
+spicedatadir
+srtml2dir
 sbg_tir_l1pkgpythondir
 installsbg_tir_l1dir
 swigincdir
@@ -894,6 +896,8 @@ with_python_sys_prefix
 with_python_prefix
 with_python_exec_prefix
 with_doxygen
+with_srtm_l2
+with_spice_data
 with_swig
 with_documentation
 '
@@ -1595,6 +1599,8 @@ Optional Packages:
   --with-doxygen[=DIR]    use Doxygen (default is yes if found) - it is
                           possible to specify the root directory for Doxygen
                           (optional).
+  --with-srtm-l2[=DIR]    give directory where SRTM L2 data can be found
+  --with-spice-data[=DIR] give directory where SPICE data can be found
   --without-swig          Bypass running SWIG to update SWIG wrappers. The
                           SWIG wrappers can take a bit of time to create and
                           compile, so if you aren't working directly with them
@@ -22794,6 +22800,33 @@ installsbg_tir_l1dir=\${prefix}
 
 sbg_tir_l1pkgpythondir=\${prefix}/\${pythondir}/sbg_tir_l1
 
+
+
+#=================================================================
+# Location of dem and spice data
+
+
+# Check whether --with-srtm-l2 was given.
+if test ${with_srtm_l2+y}
+then :
+  withval=$with_srtm_l2;  ac_srtml2_dir="$withval"
+else $as_nop
+   ac_srtml2_dir="/home/smyth/sandbox/sbg_ancillary/srtm_v3_dem_L2"
+fi
+
+srtml2dir="$ac_srtml2_dir"
+
+
+
+# Check whether --with-spice-data was given.
+if test ${with_spice_data+y}
+then :
+  withval=$with_spice_data;  ac_spicedata_dir="$withval"
+else $as_nop
+   ac_spicedata_dir="/home/smyth/sandbox/sbg_ancillary/spice_data/cspice"
+fi
+
+spicedatadir="$ac_spicedata_dir"
 
 
 #=================================================================
