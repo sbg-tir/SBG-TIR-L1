@@ -1,0 +1,2 @@
+# See README.md
+EXTRA_DIST+= @unittestdata@/SMAP_L1B_TB_SPS_RunConfig_20150228T224642376.xml

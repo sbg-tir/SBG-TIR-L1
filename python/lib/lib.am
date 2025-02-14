@@ -1,0 +1,7 @@
+sbg_tir_l1pkgpython_PYTHON+= @srcpythonlib@/dummy.py
+
+EXTRA_DIST+=@srcpythonlib@/dummy_test.py
+EXTRA_DIST+= @srcpythonlib@/__init__.py
+
+# Allow searchs for .pyx files in this directory
+vpath %.pyx $(srcdir)/@srcpythonlib@

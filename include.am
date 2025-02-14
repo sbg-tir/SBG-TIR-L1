@@ -1,0 +1,9 @@
+# List of automakes to include.
+
+include sbg_tir_l1.am
+include lib/lib.am
+include python/python.am
+include bindings/python/python.am
+include unit_test_data/unit_test_data.am
+include script/script.am
+

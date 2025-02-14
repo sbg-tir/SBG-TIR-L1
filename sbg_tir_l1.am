@@ -1,0 +1,9 @@
+# Stuff specific to oco3
+
+# Build these up as we go
+dist_installsbg_tir_l1_SCRIPTS = 
+SWIG_FLAG =
+DIST_HOOK =
+
+# Dist check need to know where to find geocal
+DISTCHECK_CONFIGURE_FLAGS = PKG_CONFIG_PATH=$(PKG_CONFIG_PATH)

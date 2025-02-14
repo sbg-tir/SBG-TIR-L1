@@ -1,0 +1,4 @@
+These are M4 macros that only apply to this repository. We separate this
+out so the config/m4 macros can come from a common repository shared with
+multiple projects. This directory has things that *shouldn't* be shared
+because they aren't cross project.

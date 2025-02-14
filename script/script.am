@@ -1,0 +1,1 @@
+installsbg_tir_l1_DATA = @srcscript@/setup_sbg_tir_l1.csh @srcscript@/setup_sbg_tir_l1.sh

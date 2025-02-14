@@ -1,0 +1,77 @@
+# New version of geotiff library has some uninitialized memory in the
+# tiff tag stuff. This doesn't seem like a real issue, so add suppression
+{
+   geotiff_unitialized_memory
+   Memcheck:Cond
+   ...
+   fun:_ZNK6GeoCal11GeotiffFile10get_tiftagIN5blitz5ArrayIdLi1EEEEET_NS0_8tiftag_tE
+}
+{
+   geotiff_unitialized_memory2
+   Memcheck:Cond
+   ...
+   fun:_ZN12geotiff_file5basic11test_methodEv
+}
+{
+   geotiff_unitialized_memory3
+   Memcheck:Cond
+   ...
+   fun:_ZN9vicar_ogr5basic11test_methodEv
+}
+{
+   geotiff_unitialized_memory4
+   Memcheck:Cond
+   ...
+   fun:_ZN18vicar_raster_imageL19vicar_label_invokerEv
+}
+{
+   geotiff_unitialized_memory5
+   Memcheck:Cond
+   ...
+   fun:_ZN18vicar_raster_imageL28write_pixel_is_point_invokerEv
+}
+{
+   harmless_looking_hdf_error
+   Memcheck:Addr4
+   fun:H5_build_extpath
+   fun:H5F_open
+}
+# -----------------------------------------------------------------------
+# These are various VICAR errors that occur a lot but don't seem to be
+# real problems. Suppress these so we can see the actual problems
+
+{
+   Write unitialized data to disk
+   Memcheck:Param
+   write(buf)
+   fun:__write_nocancel
+}
+# As of valgrind 3.6.0, strspn gives error messages. This are actual
+# perfectly safe, these are just the sort of overread optimization sorts
+# of things that happen all over libc. But these don't get suppressed 
+# correctly by valgrind, so go ahead and add suppressions.
+{
+   Conditional error action
+   Memcheck:Cond
+   fun:__strspn_sse42
+   fun:v2_error_action
+   fun:process_optionals_c
+}
+{
+   Conditional error action
+   Memcheck:Cond
+   fun:v2_error_action
+   fun:process_optionals_c
+}
+{
+   Conditional label
+   Memcheck:Cond
+   fun:__strspn_sse42
+   fun:parse_label
+}
+{
+   Conditional label
+   Memcheck:Cond
+   fun:parse_label
+}
+# -----------------------------------------------------------------------

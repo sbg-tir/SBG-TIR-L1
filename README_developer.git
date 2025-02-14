@@ -1,0 +1,39 @@
+We have general-autoconf stored in a separate repository, and can pull
+from it using git subtree (note this only matters for a developer, a
+user doesn't need to know about subtree).
+
+Note that git subtree isn't installed by default with git, however it is a
+simple install from the git source tree, found in the contrib directory.
+
+If the git repository is added as the remote autconf-repo, then we pull
+in the latest changes by:
+
+git subtree pull --prefix config/m4 autoconf-repo master
+git subtree pull --prefix swig_rules swig-rules-repo master
+
+(note we can include "--squash" here if we want to put the whole history
+in as one pull).
+
+Changes can be pushed up stream by:
+
+git subtree push --prefix config/m4 autoconf-repo master
+git subtree push --prefix swig_rules swig-rules-repo master
+
+We can look at differences with upstream:
+
+git fetch autoconf-repo
+git diff HEAD:config/m4 autoconf-repo/master
+
+Note if you need to add in a new subtree, the initial creation is by:
+
+git subtree add --prefix config/m4 autoconf-repo master
+
+Sometimes you will get errors saying "Updates were rejected because the
+tip of current branch is behind." First do a subtree pull if you haven't,
+this may be real. But you might get this even if a pull says everything
+is up to date. This appears to be a bug in subtree, see description at
+http://stackoverflow.com/questions/13756055/git-subtree-subtree-up-to-date-but-cant-push
+
+Can try 
+
+git push autoconf-repo `git subtree split --prefix config/m4 master`:master --force

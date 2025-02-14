@@ -1,0 +1,99 @@
+EXTRA_DIST += @pythonswigsrc@/swig_wrap.tmpl
+
+pkgpythonswigdir = $(prefix)/@pythondir@/sbg_tir_l1_swig
+pkgpythonswig_PYTHON = @pythonswigsrc@/__init__.py
+INCLUDE_SWIG_SRC = $(SWIG_SRC)
+# This is a duplicate of INCLUDE_SWIG_SRC right now, but in principle we could
+# have conditional swig source. We want to make sure all the SWIG src gets
+# included in EXTRA_DIST
+FULL_SWIG_SRC = $(SWIG_SRC)
+CONDITIONAL_SWIG_SRC = $(SWIG_SRC)
+
+pkgpythonswig_PYTHON += $(patsubst %_wrap.cc, %.py, $(INCLUDE_SWIG_SRC))
+pkgpythonswig_LTLIBRARIES = _swig_wrap.la
+
+_swig_wrap_la_CPPFLAGS = $(PYTHON_CPPFLAGS) $(PYTHON_NUMPY_CPPFLAGS) 
+_swig_wrap_la_CPPFLAGS+= $(GEOCAL_CFLAGS) $(GEOCAL_SWIG_CFLAGS)
+_swig_wrap_la_CPPFLAGS+= $(AM_CPPFLAGS)
+# Need to share the geocal type table, so python knows how to convert our
+# types to geocal types (e.g., EcostressCamera to GeoCal::Camera)
+_swig_wrap_la_CPPFLAGS+= -DSWIG_TYPE_TABLE=geocal
+_swig_wrap_la_CXXFLAGS = $(AM_CXXFLAGS)
+_swig_wrap_la_LDFLAGS = -module -avoid-version
+_swig_wrap_la_LIBADD = libsbg_tir_l1.la
+_swig_wrap_la_SOURCES = $(INCLUDE_SWIG_SRC)
+_swig_wrap_la_SOURCES+= @swigsrc@/swig_wrap.cc
+
+EXTRA_DIST+= $(FULL_SWIG_SRC)
+EXTRA_DIST+= $(srcdir)/$(swigsrc)/*_wrap.h
+
+# Shortcut for building just python
+install-python-2: install-libLTLIBRARIES install-python-sbg install-pkgpythonswigLTLIBRARIES install-pkgpythonswigPYTHON
+	$(noop)
+
+install-python: all
+	$(MAKE) -j 1 install-python-2 
+# Only generate these files in maintainer mode, otherwise consider them
+# as input.
+if MAINTAINER_MODE
+if HAVE_SWIG
+
+# SWIG doesn't like the GCC extension -isystem (which is like -I, but lets
+# GCC know not to complain about things in the header files we can't change).
+# Just replace -isystem with -I for swig
+comma:= ,
+empty:=
+space:= $(empty) $(empty)
+GSWIG_FLAGS=$(subst -I$(space),-I,$(patsubst -O2,,$(patsubst -isystem%,-I%, $(GEOCAL_CFLAGS) $(GEOCAL_SWIG_CFLAGS))))
+
+$(swigsrc)/%_wrap.Pcc : %.i %.cc %.h $(SWIG_TARGET)
+	$(SWIG) $(SWIG_PYTHON_OPT) $(SWIG_FLAG) $(AM_CPPFLAGS) $(GSWIG_FLAGS) -MM -MF $(builddir)/$@.tmp -module $* -o $(srcdir)/$(swigsrc)/$*_wrap.cc $<
+	sed 's,\($*_wrap\)\.cc[ :]*,\1.cc $@ : ,g' < $@.tmp > $@
+	rm $@.tmp
+	echo "$(swigsrc)/$*_wrap.cc: $(<D)/$*.cc" >> $@
+	echo "$(swigsrc)/$*_wrap.cc: $(<D)/$*.h" >> $@
+
+$(swigsrc)/%_wrap.Pcc : %.i %.h $(SWIG_TARGET)
+	$(SWIG) $(SWIG_PYTHON_OPT) $(SWIG_FLAG) $(AM_CPPFLAGS) $(GSWIG_FLAGS) -MM -MF $(builddir)/$@.tmp -module $* -o $(srcdir)/$(swigsrc)/$*_wrap.cc $<
+	sed 's,\($*_wrap\)\.cc[ :]*,\1.cc $@ : ,g' < $@.tmp > $@
+	rm $@.tmp
+	echo "$(swigsrc)/$*_wrap.cc: $(<D)/$*.h" >> $@
+
+$(swigsrc)/%_wrap.Pcc : %.i $(SWIG_TARGET)
+	$(SWIG) $(SWIG_PYTHON_OPT) $(SWIG_FLAG) $(AM_CPPFLAGS) $(GSWIG_FLAGS) -MM -MF $(builddir)/$@.tmp -module $* -o $(srcdir)/$(swigsrc)/$*_wrap.cc $<
+	sed 's,\($*_wrap\)\.cc[ :]*,\1.cc $@ : ,g' < $@.tmp > $@
+	rm $@.tmp
+
+$(srcdir)/$(swigsrc)/swig_wrap.cc: $(pythonswigsrc)/swig_wrap.tmpl config/create_python_init.py Makefile $(PYTHON_TARGET)
+	export LD_LIBRARY_PATH="${PYTHON_LDPATH}${LD_LIBRARY_PATH}" && \
+        $(PYTHON) $(srcdir)/config/create_python_init.py $< $@ swig ecostress $(patsubst %_wrap.cc,%,$(notdir $(SWIG_SRC)))
+
+$(srcdir)/$(swigsrc)/%_wrap.cc: %.i %.h %.cc $(DOXYGEN_TARGET) $(SWIG_TARGET)
+	mkdir -p $*_doc
+	OUTDIR=$*_doc INPUT="$(<D)/$*.h $(<D)/$*.cc" $(DOXYGEN) $(srcdir)/config/doxygen_single.cfg
+	export LD_LIBRARY_PATH="${PYTHON_LDPATH}${LD_LIBRARY_PATH}" && \
+        $(PYTHON) $(srcdir)/config/doxy2swig.py $*_doc/xml/index.xml $*_doc.i
+	rm -r $*_doc
+	echo "%include \"$*.i\"" >> $*_doc.i
+	$(SWIG) $(SWIG_PYTHON_OPT) $(SWIG_FLAG) $(AM_CPPFLAGS) $(GSWIG_FLAGS) -module $* -o $(srcdir)/$(swigsrc)/$*_wrap.cc $*_doc.i 
+	rm $*_doc.i
+
+$(srcdir)/$(swigsrc)/%_wrap.cc: %.i %.h $(DOXYGEN_TARGET) $(SWIG_TARGET)
+	mkdir -p $*_doc
+	OUTDIR=$*_doc INPUT="$(<D)/$*.h" $(DOXYGEN) $(srcdir)/config/doxygen_single.cfg
+	export LD_LIBRARY_PATH="${PYTHON_LDPATH}${LD_LIBRARY_PATH}" && \
+        $(PYTHON) $(srcdir)/config/doxy2swig.py $*_doc/xml/index.xml $*_doc.i
+	rm -r $*_doc
+	echo "%include \"$*.i\"" >> $*_doc.i
+	$(SWIG) $(SWIG_PYTHON_OPT) $(SWIG_FLAG) $(AM_CPPFLAGS) $(GSWIG_FLAGS) -module $* -o $(srcdir)/$(swigsrc)/$*_wrap.cc $*_doc.i 
+	rm $*_doc.i
+
+$(srcdir)/$(swigsrc)/%_wrap.cc: %.i $(SWIG_TARGET)
+	$(SWIG) $(SWIG_PYTHON_OPT) $(SWIG_FLAG) $(AM_CPPFLAGS) $(GSWIG_FLAGS) -module $* -o $(srcdir)/$(swigsrc)/$*_wrap.cc $<
+
+BUILT_SOURCES+= $(addprefix $(srcdir)/, $(INCLUDE_SWIG_SRC))
+BUILT_SOURCES+= $(srcdir)/$(swigsrc)/swig_wrap.cc
+
+-include $(patsubst %.cc, %.Pcc, $(INCLUDE_SWIG_SRC))
+endif HAVE_SWIG
+endif MAINTAINER_MODE

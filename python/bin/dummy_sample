@@ -1,0 +1,32 @@
+#! /usr/bin/env python
+#
+# Program to fit context cameraa
+
+import geocal
+import sbg
+
+version = "October 24, 2020"
+usage='''Usage:
+  dummy_sample [options] <fake_file> <output_base_directory>
+  dummy_sample -h | --help
+  dummy_sample -v | --version
+
+This is a place holder program.
+
+Options:
+  -h --help         
+       Print this message
+
+  --dummy-arg=v
+       Dummy argument [default: 0.0]
+
+  --verbose
+       Write log file to stderr as well as to the log file.
+
+  -v --version      
+       Print program version
+'''
+
+args = geocal.docopt_simple(usage, version=version)
+
+print("Hi, in dummy_sample")
