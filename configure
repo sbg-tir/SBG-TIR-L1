@@ -677,14 +677,9 @@ installsbg_tir_l1dir
 swigincdir
 sbg_tir_l1swigincdir
 pythondocdir
-srcpythonscript
 swigsrc
 pythonswigsrc
 unittestdata
-testsupportsrc
-docpythonsrc
-srcpythonbin
-srcpythonlib
 srclib
 srcscript
 srcpython
@@ -22774,21 +22769,11 @@ srcscript=script
 
 srclib=lib
 
-srcpythonlib=${srcpython}/lib
-
-srcpythonbin=${srcpython}/bin
-
-docpythonsrc=${srcpython}/doc
-
-testsupportsrc=${srcpython}/test_support
-
 unittestdata=unit_test_data
 
 pythonswigsrc=bindings/python
 
 swigsrc=bindings/python/swig
-
-srcpythonscript=script
 
 pythondocdir=\${prefix}/share/doc/sbg_tir_l1/python
 

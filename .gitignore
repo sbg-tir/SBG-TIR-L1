@@ -10,7 +10,7 @@ create_delta.bundle
 *.lo
 .cache
 .tramp_history
-python/geocal.egg-info
+sbg_tir_l1.egg-info
 
 
 # Byte-compiled / optimized / DLL files
@@ -21,3 +21,4 @@ Makefile.local
 micromamba
 sbg_environment_installed.yml
 sbg-tir-l1-docker-*.tar.gz
+python/build
