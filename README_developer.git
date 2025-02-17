@@ -9,7 +9,6 @@ If the git repository is added as the remote autconf-repo, then we pull
 in the latest changes by:
 
 git subtree pull --prefix config/m4 autoconf-repo master
-git subtree pull --prefix swig_rules swig-rules-repo master
 
 (note we can include "--squash" here if we want to put the whole history
 in as one pull).
@@ -17,7 +16,6 @@ in as one pull).
 Changes can be pushed up stream by:
 
 git subtree push --prefix config/m4 autoconf-repo master
-git subtree push --prefix swig_rules swig-rules-repo master
 
 We can look at differences with upstream:
 
