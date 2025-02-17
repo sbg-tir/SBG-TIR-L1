@@ -21,10 +21,10 @@ CONDA_PACKAGE_DIR=../../afids-conda-package/afids-conda-channel
 # Location of various datasets
 SBG_ANCILLARY=/home/smyth/sandbox/sbg_ancillary
 AFIDS_DATA_ELEV_ROOT=$(SBG_ANCILLARY)/srtm_v3_dem_L2
-AFIDS_DATA_LWM=$(SBG_ANCILLARY)/srtm_v3_dem_lwm
+AFIDS_DATA_LWM=$(SBG_ANCILLARY)/srtm_v3_lwm
 AFIDS_DATA_SPICEDATA=$(SBG_ANCILLARY)/cspice
 AFIDS_DATA_ORTHO=$(SBG_ANCILLARY)/ortho_lsat7
-SBG_OSP_DIR=$(SBG_ANCILLARY)/l1_osp_dir/latest
+SBG_OSP_DIR=$(SBG_ANCILLARY)/l1_osp_dir
 
 # Include a Makefile.local to override things, if found
 -include Makefile.local
@@ -46,7 +46,7 @@ $(ENV_DIR): micromamba $(MUSES_ENVIRONMENT_FILE)
 	-rm -rf $(ENV_DIR)
 	./micromamba create --override-channels --channel conda-forge --channel $(CONDA_PACKAGE_DIR) -y -f $(SBG_ENVIRONMENT_FILE) -p $(ENV_DIR)
 	./micromamba run -p $(ENV_DIR) conda env export --override-channels --channel conda-forge --channel $(CONDA_PACKAGE_DIR) > sbg_environment_installed.yml
-	eval "$$($(ENV_DIR)/bin/conda shell.bash hook)" && conda activate $(ENV_DIR) && conda env config vars set AFIDS_DATA_ELEV_ROOT=$(AFIDS_DATA_ELEV_ROOT) AFIDS_DATA_LWM=$(AFIDS_DATA_LWM) AFIDS_DATA_SPICEDATA=$(AFIDS_DATA_SPICEDATA) AFIDS_DATA_ORTHO=$(AFIDS_DATA_ORTHO) SBG_OSP_DIR=$(SBG_OSP_DIR)
+	eval "$$($(ENV_DIR)/bin/conda shell.bash hook)" && conda activate $(ENV_DIR) && conda env config vars set AFIDS_DATA_ELEV_ROOT=$(AFIDS_DATA_ELEV_ROOT) AFIDS_DATA_LWM=$(AFIDS_DATA_LWM) AFIDS_DATA_SPICEDATA=$(AFIDS_DATA_SPICEDATA) SPICEDATA=$(AFIDS_DATA_SPICEDATA) AFIDS_DATA_ORTHO=$(AFIDS_DATA_ORTHO) SBG_OSP_DIR=$(SBG_OSP_DIR)
 
 # Recreate the environment, deleting if already there
 # ------------------------------------------------------------
