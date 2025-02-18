@@ -2,3 +2,4 @@ CONDA_FIXED=yes
 ENV_DIR=/home/sbg-env
 CONDA_PACKAGE_DIR=/home/afids-conda-package/afids-conda-channel
 SBG_ANCILLARY=/data/sbg_ancillary
+SBG_WORKDIR=/home/sbg-workdir

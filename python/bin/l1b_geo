@@ -1,0 +1,48 @@
+#! /usr/bin/env python
+#
+# SBG TIR L1 GEO processing
+
+import geocal
+import sbg_tir_l1
+from loguru import logger
+from pathlib import Path
+import sys
+
+usage='''Usage:
+  l1b_geo [options] <fake_file> <output_base_directory>
+  l1b_geo -h | --help
+  l1b_geo -v | --version
+
+This the SBG TIR L1 Geo processing PGE.
+
+Options:
+  -h --help         
+       Print this message
+
+  --debug
+      Set logger level to DEBUG, which provides debugging log messages.
+
+  --verbose
+       Write log file to stderr as well as to the log file.
+
+  -v --version      
+       Print program version
+'''
+
+args = geocal.docopt_simple(usage, version=sbg_tir_l1.__version__)
+
+if args.debug:
+    logger.setLevel(logging.DEBUG)
+out_base_dir = Path(args.output_base_directory)
+out_base_dir.mkdir(parents=True,exist_ok=True)
+logger.add(out_base_dir / "l1b_geo.log")
+
+try:
+    with logger.catch(reraise=True):
+        if False:
+            raise RuntimeError("Fake error")
+    logger.info("L1b_geo processing succeeded")
+except:
+    logger.info("L1b_geo processing failed")
+    sys.exit(1)
+

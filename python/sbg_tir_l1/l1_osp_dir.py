@@ -92,6 +92,7 @@ class L1OspDir:
       ["camera_focal_length", None, "The camera focal length"],
       ["datum", None, "The datum file to use"],
       ["srtm_dir", None, "The location of the SRTM data"],
+      ["srtm_lwm", None, "The location of the SRTM land water mask"],
       ["match_resolution", None, "The resolution to use when matching, in meters"],
       ["ortho_base_dir", None, "The base directory for the landsat ortho base"],
       ["landsat_band", None, "The band of the landsat ortho base to use"],
@@ -113,8 +114,13 @@ class L1OspDir:
             srtm_dir = os.environ["ELEV_ROOT"]
         logger.info(f"Datum: {datum}")
         logger.info(f"SRTM Dir: {srtm_dir}")
-        return geocal.SrtmDem(srtm_dir,False, geocal.DatumGeoid96(datum))
+        return geocal.SrtmDem(str(srtm_dir),False, geocal.DatumGeoid96(str(datum)))
 
+    @cached_property
+    def lwm(self):
+        '''The LWM to use.'''
+        return geocal.SrtmLwmData(str(self.srtm_lwm))
+    
     @cached_property
     def ortho_base(self):
         '''The ortho base file to use.'''
@@ -125,7 +131,7 @@ class L1OspDir:
         # Otherwise, use the default Landsat7Global object
         logger.info(f"OrthoBase dir: {self.ortho_base_dir}")
         logger.info(f"Landsat band: {self.landsat_band}")
-        return geocal.Landsat7Global(self.ortho_base_dir,
+        return geocal.Landsat7Global(str(self.ortho_base_dir),
                                      band_to_landsat_band(self.landsat_band))
 
     def match_mapinfo(self, igc):

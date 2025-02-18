@@ -12,6 +12,7 @@ from __future__ import absolute_import
 import os
 import re
 import glob
+from .version import __version__
 from geocal import *  # type: ignore
 from sbg_tir_l1_swig import *  # type: ignore
 
