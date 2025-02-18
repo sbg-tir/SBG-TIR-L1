@@ -28,10 +28,10 @@ install2:
 # ------------------------------------------------------------------
 
 lint:
-	ruff check sbg_tir_l1 test
+	ruff check sbg_tir_l1 bin test
 
 format:
-	ruff format sbg_tir_l1 test
+	ruff format sbg_tir_l1 bin test
 
 # Note that PYTHONPATH is required, at least as of pip 24.3.1. The py.typed file needed to
 # tell mypy that our modules have types doesn't get translated through using

@@ -1,6 +1,6 @@
 from sbg_tir_l1 import L1OspDir
-import geocal
 import pickle
+
 
 def test_l1_osp_dir(l1_osp_dir, isolated_dir):
     t = L1OspDir(l1_osp_dir)
@@ -12,5 +12,4 @@ def test_l1_osp_dir(l1_osp_dir, isolated_dir):
     print(t.lwm)
     # Skip for now, we want to move to geotiff 1x1 degree tiles rather than
     # VICAR 5x5. We'll update this later
-    #print(t.ortho_base)
-    
+    # print(t.ortho_base)

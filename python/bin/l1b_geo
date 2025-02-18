@@ -31,18 +31,8 @@ Options:
 
 args = geocal.docopt_simple(usage, version=sbg_tir_l1.__version__)
 
-if args.debug:
-    logger.setLevel(logging.DEBUG)
-out_base_dir = Path(args.output_base_directory)
-out_base_dir.mkdir(parents=True,exist_ok=True)
-logger.add(out_base_dir / "l1b_geo.log")
-
-try:
-    with logger.catch(reraise=True):
-        if False:
-            raise RuntimeError("Fake error")
-    logger.info("L1b_geo processing succeeded")
-except:
-    logger.info("L1b_geo processing failed")
-    sys.exit(1)
+with sbg_tir_l1.prog_wrap(Path(args.output_base_directory), "l1b_geo.log", "L1b_geo",
+                          debug = args.debug):
+    logger.info("Fake run")
+    logger.debug("Fake debug")
 

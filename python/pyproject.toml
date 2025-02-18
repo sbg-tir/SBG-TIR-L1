@@ -17,8 +17,12 @@ build-backend = "setuptools.build_meta"
 
 "__init__.py" = ["F401", "F403"]
 
+# prog_wap use a bare except to log a final error. This is actually one of the
+# few times when a bare except is what we want
+"prog_wrap.py" = ["E722"]
+
 [tool.ruff.lint]
 # Old code we are matching. We don't want to actually change
 # this code at all, the point is to compare our new code against
 # this old code
-exclude = ["retrieval_info_old.py"]
+#exclude = ["retrieval_info_old.py"]
