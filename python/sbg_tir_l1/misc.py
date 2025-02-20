@@ -1,6 +1,6 @@
 # This is various miscellaneous routines that don't fit elsewhere
 from __future__ import annotations
-import geocal # type: ignore
+import geocal  # type: ignore
 import os
 import re
 import math

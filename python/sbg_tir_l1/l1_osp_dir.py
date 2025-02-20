@@ -1,11 +1,12 @@
 from __future__ import annotations
 import importlib.util
-import geocal # type: ignore
+import geocal  # type: ignore
 from functools import partial, cached_property
 from .misc import band_to_landsat_band
 import os
 from loguru import logger
 from typing import Any
+
 
 # Temp, this should probably get moved into geocal. But for now place here
 # This should also get expanded, right now this doesn't handle resizing etc.
@@ -60,7 +61,7 @@ class L1OspDir:
 
     # List of variables that we read, possibly with a default value and
     # description
-    CONFIG_VARIABLES : list[tuple[str,Any,str]] = [
+    CONFIG_VARIABLES: list[tuple[str, Any, str]] = [
         ("pge_name", None, "The name of the PGE"),
         ("l1a_pge_name", None, "The name of the L1A PGE"),
         ("pge_version", None, "The  version of the PGE"),
