@@ -18,5 +18,5 @@ setup(
     install_requires=[
         'numpy', 'scipy', 
     ],
-    scripts=["bin/l1b_geo",]
+    scripts=["bin/l1a_cal", "bin/l1b_rad", "bin/l1b_geo",]
 )

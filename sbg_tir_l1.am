@@ -7,3 +7,24 @@ DIST_HOOK =
 
 # Dist check need to know where to find geocal
 DISTCHECK_CONFIGURE_FLAGS = PKG_CONFIG_PATH=$(PKG_CONFIG_PATH)
+
+# End to end test
+export end_to_end_test_data = @testdatadir@
+
+l1a_bb = $(end_to_end_test_data)/latest/SBG_L1A_BB_80000_20240101T120000_0101_01.nc
+l1a_raw_pix = $(end_to_end_test_data)/latest/SBG_L1A_RAW_PIX_80000_001_20240101T120000_0101_01.nc
+l1a_raw_att = $(end_to_end_test_data)/latest/SBG_L1A_RAW_ATT_80000_20240101T120000_0101_01.nc
+
+end-to-end-check: installcheck-am
+	-rm -r ./end_to_end_test_l1a_raw
+	-rm -r ./end_to_end_test_l1a_cal
+	-rm -r ./end_to_end_test_l1b_rad
+	-rm -r ./end_to_end_test_l1b_geo
+	$(MKDIR_P) ./end_to_end_test_l1a_raw
+	$(LN_S) $(l1a_bb) ./end_to_end_test_l1a_raw
+	$(LN_S) $(l1a_raw_pix) ./end_to_end_test_l1a_raw
+	$(LN_S) $(l1a_raw_att) ./end_to_end_test_l1a_raw
+	$(prefix)/bin/l1a_cal ./end_to_end_test_l1a_raw/SBG_L1A_BB_80000_20240101T120000_0101_01.nc ./end_to_end_test_l1a_raw/SBG_L1A_RAW_PIX_80000_001_20240101T120000_0101_01.nc end_to_end_test_l1a_cal
+	$(prefix)/bin/l1b_rad ./end_to_end_test_l1a_cal/SBG_L1A_PIX_80000_001_20240101T120000_0101_01.nc ./end_to_end_test_l1a_cal/SBG_L1A_RAD_GAIN_80000_001_20240101T120000_0101_01.nc  ./end_to_end_test_l1a_raw/SBG_L1A_RAW_ATT_80000_20240101T120000_0101_01.nc end_to_end_test_l1b_rad
+	$(prefix)/bin/l1b_geo ./end_to_end_test_l1a_raw/SBG_L1A_RAW_ATT_80000_20240101T120000_0101_01.nc end_to_end_test_l1b_geo end_to_end_test_l1b_rad/SBG_L1B_RAD*.nc
+

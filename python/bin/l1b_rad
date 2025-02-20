@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 #
-# SBG TIR L1 GEO processing
+# SBG TIR L1B RAD processing
 
 import geocal
 import sbg_tir_l1
@@ -9,11 +9,11 @@ from pathlib import Path
 import sys
 
 usage='''Usage:
-  l1b_geo [options] <l1a_raw_att> <prod_dir> <l1b_rad>...
-  l1b_geo -h | --help
-  l1b_geo -v | --version
+  l1b_rad [options] <l1a_pix> <l1a_gain> <l1a_raw_att> <prod_dir>
+  l1b_rad -h | --help
+  l1b_rad -v | --version
 
-This the SBG TIR L1 Geo processing PGE.
+This the SBG TIR L1B RAD processing PGE.
 
 Options:
   -h --help         
@@ -30,10 +30,10 @@ Options:
 '''
 
 args = geocal.docopt_simple(usage, version=sbg_tir_l1.__version__)
+l1a_pix = Path(args.l1a_pix).absolute()
+l1a_gain = Path(args.l1a_gain).absolute()
 l1a_raw_att = Path(args.l1a_raw_att).absolute()
-l1b_rad = [Path(f).absolute() for f in args.l1b_rad]
-
-with sbg_tir_l1.prog_wrap(Path(args.prod_dir), "l1b_geo.log", "L1b_geo",
+with sbg_tir_l1.prog_wrap(Path(args.prod_dir), "l1b_rad.log", "l1b_rad",
                           debug = args.debug):
-    sbg_tir_l1.l1b_geo_process(l1a_raw_att, l1b_rad)
+    sbg_tir_l1.l1b_rad_process(l1a_pix, l1a_gain, l1a_raw_att)
 
