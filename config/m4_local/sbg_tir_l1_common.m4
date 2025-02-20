@@ -147,7 +147,7 @@ PKG_CHECK_VAR([GEOCAL_SWIG_CFLAGS], [geocal], [swig_cflags])
 PKG_CHECK_VAR([geocaldir], [geocal], [prefix])
 
 AC_ARG_WITH([test-data],
-AS_HELP_STRING([--with-test-data=DIR], [give directory where end to end test data can be found (optional, default is /home/smyth/sandbox/sbg-test-data)]), [ ac_test_data_dir="$withval" ], [ ac_test_data_dir="/home/smyth/sandbox/sbg-test-data" ])
+AS_HELP_STRING([--with-test-data=DIR], [give directory where end to end test data can be found (optional, default is /home/smyth/sandbox/sbg_ancillary/sbg-test-data)]), [ ac_test_data_dir="$withval" ], [ ac_test_data_dir="/home/smyth/sandbox/sbg_ancillary/sbg-test-data" ])
 AC_SUBST([testdatadir], ["$ac_test_data_dir"])
 
 ])

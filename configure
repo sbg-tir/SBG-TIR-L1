@@ -1582,7 +1582,7 @@ Optional Packages:
                           default is /pkg/afids/geocal_latest)
   --with-test-data=DIR    give directory where end to end test data can be
                           found (optional, default is
-                          /home/smyth/sandbox/sbg-test-data)
+                          /home/smyth/sandbox/sbg_ancillary/sbg-test-data)
   --with-python[=DIR]     use Python (default is yes if found) - it is
                           possible to specify the root directory for Python
                           (optional).
@@ -20577,7 +20577,7 @@ if test ${with_test_data+y}
 then :
   withval=$with_test_data;  ac_test_data_dir="$withval"
 else $as_nop
-   ac_test_data_dir="/home/smyth/sandbox/sbg-test-data"
+   ac_test_data_dir="/home/smyth/sandbox/sbg_ancillary/sbg-test-data"
 fi
 
 testdatadir="$ac_test_data_dir"
