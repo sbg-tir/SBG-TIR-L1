@@ -1,0 +1,77 @@
+2024-12-11 18:08:50,602 - INFO - Log file created: L1A_CAL_28557_007_20230720T064330_0712_01.log
+
+2024-12-11 18:08:50,602 - INFO - el1a_bbcal PROCESS STARTS.
+2024-12-11 18:08:50,602 - INFO - PCF File Path: ../L1A_PCF_UPF.txt
+2024-12-11 18:08:50,602 - INFO - Image input HDF5 File Path: /ops/store18/PRODUCTS/L1A_RAW_PIX/2023/07/20/L1A_RAW_PIX_28557_007_20230720T064330_0712_01.h5
+2024-12-11 18:08:50,603 - INFO - BlackBody input HDF5 File Path: /ops/store18/PRODUCTS/L1A_BB/2023/07/20/ECOv002_L1A_BB_28557_007_20230720T064330_0712_01.h5
+
+2024-12-11 18:08:50,603 - INFO - Parsed PCF file: {'FPA_BB_TEMPERATURE': '../BlackbodyTemp', 'FPA_BB_DN': '../BlackBodyDN', 'IMAGE_RAW_DN': '../UncalibratedDN', 'FPA_RADIANCE': '../BlackbodyRadiance', 'CALC_IMAGE_RADIANCE': '../ImgRadiance', 'BANDS_TO_PROCESS': [4, 5], 'BBTEMP_GAIN': 1.0, 'BBTEMP_OFFS': 0.0, 'VERBOSE': 2.0, 'PLANCK_ALGORITHM': 1.0, 'RADIANCE_IMAGES': 1.0, 'KELVIN_IMAGES': 1.0, 'TVAC': 0.0, 'TVAC_TARGET': 4686.0, 'TVAC_HOTSPOT1': 750.0, 'TVAC_HOTSPOT2': 2975.0, 'B6IVAL': -0.0698952, 'B6SINC': 4.3703704e-05, 'B2IVAL': 0.0, 'B2SINC': 0.0, 'B3IVAL': 0.0, 'B3SINC': 0.0, 'B4IVAL': 0.0, 'B4SINC': 0.0, 'B5IVAL': 0.0, 'B5SINC': 0.0, 'FIRST_CONSTANT_C1': 119104200.0, 'SECOND_CONSTANT_C2': 14387.752, 'WATTS_CONVERT': 8.73068e-13, 'ITERATION_TOLERANCE': 1e-08, 'B1_CW': 1.6601, 'B1_BW': 0.3678, 'B1_LW': 1.4762, 'B1_HW': 1.844, 'B2_CW': 8.29, 'B2_BW': 0.354, 'B2_LW': 8.113, 'B2_HW': 8.467, 'B3_CW': 8.78, 'B3_BW': 0.31, 'B3_LW': 8.625, 'B3_HW': 8.935, 'B4_CW': 9.2, 'B4_BW': 0.396, 'B4_LW': 9.002, 'B4_HW': 9.398, 'B5_CW': 10.49, 'B5_BW': 0.41, 'B5_LW': 10.285, 'B5_HW': 10.695, 'B6_CW': 12.09, 'B6_BW': 0.611, 'B6_LW': 11.7845, 'B6_HW': 12.3955}
+
+2024-12-11 18:08:50,603 - INFO - Result from setup_parameters_and_locals: ({'inph5i': '/ops/store18/PRODUCTS/L1A_RAW_PIX/2023/07/20/L1A_RAW_PIX_28557_007_20230720T064330_0712_01.h5', 'inph5b': '/ops/store18/PRODUCTS/L1A_BB/2023/07/20/ECOv002_L1A_BB_28557_007_20230720T064330_0712_01.h5', 'debug': 2.0, 'inpupf': None, 'suffix': None, 'bands_to_process': [4, 5], 'outimg': '../UncalibratedDN', 'outbdn': '../BlackBodyDN', 'outwat': '../ImgRadiance', 'outkel': '../BlackbodyTemp', 'inprad': '../BlackbodyRadiance', 'planck_algorithm': 1.0, 'planck_constants': {'FIRST_CONSTANT_C1': 119104200.0, 'SECOND_CONSTANT_C2': 14387.752, 'WATTS_CONVERT': 8.73068e-13, 'ITERATION_TOLERANCE': 1e-08}, 'band_parameters': {1: {'CW': 1.6601, 'BW': 0.3678, 'LW': 1.4762, 'HW': 1.844}, 2: {'CW': 8.29, 'BW': 0.354, 'LW': 8.113, 'HW': 8.467}, 3: {'CW': 8.78, 'BW': 0.31, 'LW': 8.625, 'HW': 8.935}, 4: {'CW': 9.2, 'BW': 0.396, 'LW': 9.002, 'HW': 9.398}, 5: {'CW': 10.49, 'BW': 0.41, 'LW': 10.285, 'HW': 10.695}, 6: {'CW': 12.09, 'BW': 0.611, 'LW': 11.7845, 'HW': 12.3955}}, 'temp_range_325': (310.0, 330.0), 'temp_range_295': (275.0, 305.0), 'daytime': None, 'cal_date': None, 'cal_time': None}, {'id': '20241211_180850_603678', 'nl_image': 11264, 'ns_image': 5400, 'nl_bb': 11264, 'ns_bb': 1})
+
+2024-12-11 18:08:50,603 - INFO - Creating necessary temporary directories...
+2024-12-11 18:08:50,604 - INFO - Directory already exists or not specified: ../BlackbodyTemp
+2024-12-11 18:08:50,604 - INFO - Directory already exists or not specified: ../BlackBodyDN
+2024-12-11 18:08:50,604 - INFO - Directory already exists or not specified: ../UncalibratedDN
+2024-12-11 18:08:50,604 - INFO - Directory already exists or not specified: ../BlackbodyRadiance
+2024-12-11 18:08:50,604 - INFO - Directory already exists or not specified: ../ImgRadiance
+2024-12-11 18:08:50,604 - INFO - 
+.....Extracting Uncalibrated DN values...
+2024-12-11 18:08:50,836 - INFO - Input Image Size is: 11264 Lines x 5400 Samples
+2024-12-11 18:08:50,836 - INFO - Extracted band 4 DN to ../UncalibratedDN/b4_image_28557_007_20230720T064330_0712_01.hlf
+2024-12-11 18:08:51,313 - INFO - Input Image Size is: 11264 Lines x 5400 Samples
+2024-12-11 18:08:51,313 - INFO - Extracted band 5 DN to ../UncalibratedDN/b5_image_28557_007_20230720T064330_0712_01.hlf
+2024-12-11 18:08:51,607 - INFO - 
+....Extracting blackbody data...
+2024-12-11 18:08:51,745 - INFO - Extracted dimensions - nl: 11264, ns: 1
+2024-12-11 18:08:51,745 - INFO - 
+....Calculating blackbody radiance...
+2024-12-11 18:08:51,758 - INFO - Processing Band 4 with CW=9.2, BW=0.396, LW=9.002, HW=9.398
+2024-12-11 18:08:51,824 - INFO - Saved radiance and FPA temperatures for band 4 to ../BlackbodyRadiance and ../BlackbodyTemp
+2024-12-11 18:08:51,825 - INFO - Calculated blackbody radiance for band 4
+2024-12-11 18:08:51,837 - INFO - Processing Band 5 with CW=10.49, BW=0.41, LW=10.285, HW=10.695
+2024-12-11 18:08:51,900 - INFO - Saved radiance and FPA temperatures for band 5 to ../BlackbodyRadiance and ../BlackbodyTemp
+2024-12-11 18:08:51,900 - INFO - Calculated blackbody radiance for band 5
+2024-12-11 18:08:51,900 - INFO - 
+***********Preparing and calling el1a_2pt for each band ****************
+2024-12-11 18:08:51,901 - INFO - Prepared data for band 4
+2024-12-11 18:08:51,901 - INFO - Starting el1a_2pt processing for Band 4 with suffix 28557_007_20230720T064330_0712_01
+2024-12-11 18:08:51,901 - INFO - ***Creating Masks and Histograms for Band 4
+2024-12-11 18:08:53,252 - INFO - Saved mask to ../UncalibratedDN/mask_28557_007_20230720T064330_0712_01.npy
+2024-12-11 18:08:54,334 - INFO - Saved histogram to ../UncalibratedDN/histogram_image_band4_28557_007_20230720T064330_0712_01.png
+2024-12-11 18:08:55,680 - INFO - Saved histogram to ../UncalibratedDN/histogram_mask_band4_28557_007_20230720T064330_0712_01.png
+2024-12-11 18:08:56,066 - INFO - Band 4 Mask Mean=0.9772727272727273 SD=0.14903269373413636
+2024-12-11 18:08:56,066 - INFO - ***Calculating Gain/Offset for Band 4
+2024-12-11 18:08:56,102 - INFO - Applied non-linearity correction for Band 4
+2024-12-11 18:08:57,847 - INFO - Finished calculating and saving Gain/Offset for Band 4
+2024-12-11 18:08:57,849 - INFO - ***Converting DN to Radiance for Band 4
+2024-12-11 18:09:00,017 - INFO - Finished 2-Point DN-to-Radiance Conversion for Band 4
+2024-12-11 18:09:00,019 - INFO - ***Converting DN to Radiance for Band 4
+2024-12-11 18:09:00,405 - INFO - Finished 2-Point BlackBody  DN-to-Radiance Conversion for Band 4
+2024-12-11 18:09:00,406 - INFO - ***Converting Radiance to Temperature for Band 4
+2024-12-11 18:09:01,919 - INFO - Temperature image saved to ../ImgRadiance/b4_temperature28557_007_20230720T064330_0712_01.tif
+2024-12-11 18:09:01,919 - INFO - Finished Radiance-to-Temperature Conversion for Band 4
+2024-12-11 18:09:01,920 - INFO - Finished el1a_2pt processing for Band 4 with suffix 28557_007_20230720T064330_0712_01********************
+
+2024-12-11 18:09:01,921 - INFO - Prepared data for band 5
+2024-12-11 18:09:01,922 - INFO - Starting el1a_2pt processing for Band 5 with suffix 28557_007_20230720T064330_0712_01
+2024-12-11 18:09:01,922 - INFO - ***Creating Masks and Histograms for Band 5
+2024-12-11 18:09:03,451 - INFO - Saved mask to ../UncalibratedDN/mask_28557_007_20230720T064330_0712_01.npy
+2024-12-11 18:09:04,433 - INFO - Saved histogram to ../UncalibratedDN/histogram_image_band5_28557_007_20230720T064330_0712_01.png
+2024-12-11 18:09:05,746 - INFO - Saved histogram to ../UncalibratedDN/histogram_mask_band5_28557_007_20230720T064330_0712_01.png
+2024-12-11 18:09:06,132 - INFO - Band 5 Mask Mean=0.9696377840909091 SD=0.17158190975211066
+2024-12-11 18:09:06,134 - INFO - ***Calculating Gain/Offset for Band 5
+2024-12-11 18:09:06,169 - INFO - Applied non-linearity correction for Band 5
+2024-12-11 18:09:07,921 - INFO - Finished calculating and saving Gain/Offset for Band 5
+2024-12-11 18:09:07,922 - INFO - ***Converting DN to Radiance for Band 5
+2024-12-11 18:09:09,657 - INFO - Finished 2-Point DN-to-Radiance Conversion for Band 5
+2024-12-11 18:09:09,659 - INFO - ***Converting DN to Radiance for Band 5
+2024-12-11 18:09:10,037 - INFO - Finished 2-Point BlackBody  DN-to-Radiance Conversion for Band 5
+2024-12-11 18:09:10,038 - INFO - ***Converting Radiance to Temperature for Band 5
+2024-12-11 18:09:11,595 - INFO - Temperature image saved to ../ImgRadiance/b5_temperature28557_007_20230720T064330_0712_01.tif
+2024-12-11 18:09:11,595 - INFO - Finished Radiance-to-Temperature Conversion for Band 5
+2024-12-11 18:09:11,597 - INFO - Finished el1a_2pt processing for Band 5 with suffix 28557_007_20230720T064330_0712_01********************
+
+2024-12-11 18:09:11,598 - INFO - el1a_bbcal processing complete.
+2024-12-11 18:09:11,598 - INFO - Job completed successfully.
+

@@ -1,0 +1,138 @@
+#=============================================================
+#ECOSTRESS L1A-CAL PGE Processing Control File - PCF Parameters
+#Called by Program: el1a_bbcal.pdf
+#=============================================================
+#Purpose: Provide parameters and constants required by the
+#     L1A Radiometric Calibration L1A-CAL PGE Software.
+#     ***These Parameters Supersede All other Specifications***
+#Date Of Last Change:  18JAN2019 Version: 3.00
+#     ***Using Updated IOC SRF coefficients***
+#=============================================================
+#Output Temporary Directories:
+
+#L1A-PIX Blackbody Kelvin Temperatures (Two 1x11264 files)
+FPA_BB_TEMPERATURE=../BlackbodyTemp
+
+#L1A-PIX Blackbody DN for each band (Twelve 1x11264 files)
+FPA_BB_DN=../BlackBodyDN
+
+#L1A-PIX Raw Image DN values (Six 5400x11264 image files)
+IMAGE_RAW_DN=../UncalibratedDN
+
+#Calculated FPA Radiance files (Twelve 1x11264 files; SWIR Not Valid)
+FPA_RADIANCE=../BlackbodyRadiance
+
+#Intermediate Transfer files
+#    Gain and Offset files for creating Radiance (10 5400x11264 files)
+#    SWIR image with Dark Current subtracted (5400x11264)
+#    Optionally: Calculated Image Radiance per band (5 5400x11264 files)
+#    Optionally: Caclulated Image Temperature K (5 5400x11264 files)
+CALC_IMAGE_RADIANCE=../ImgRadiance
+
+#================================
+#Software Operation Parameters:
+
+
+#Specifys what bands to process
+#Band 1 SWIR is not valid
+BANDS_TO_PROCESS = 4,5
+
+#Blackbody Temperature adjustment factors for pt_RTDs.
+BBTEMP_GAIN=1.0
+BBTEMP_OFFS=0.0
+
+#Verbose Debug statements (0=No; 1=Yes; 2=Yes and delete temp files)
+VERBOSE=2
+
+#Planck Algorithm selection: 
+#    Center Wavelength (1) or
+#    Iterate (2) between Waveband borders.
+#    Alg1: http://ncc.nesdis.noaa.gov/data/planck.html
+#    Alg2: Gouillioud,R.,"ECOSTRESS_Error_Budget_2015-04-08.xlsm"
+PLANCK_ALGORITHM=1
+
+#Calculate Radiance Images from Gain/Offset inputs (0=No; 1=Yes)
+RADIANCE_IMAGES=1
+
+#Calculate Kelvin Temperature Images from Radiance Images (if =1 above)
+#    for Optional testing purposes (0=No; 1=Yes)
+KELVIN_IMAGES=1
+
+#Run TVAC Software (0=No; 1=Yes) NOTE: RADIANCE_IMAGES/KELVIN_IMAGES must =1
+TVAC=0
+#TVAC Target; Center Pixel (Sample-only; Line position is fixed at 1)
+#    Target is a 256x256 extraction from the first of 44 scans.
+TVAC_TARGET=4686
+#TVAC 1st BB Hot Spot; Center Pixel (Sample; Line value is fixed at 364)
+#    Hot Spot is a 50x50 Temp-average centered over a TVAC BB in scan 2 of 44.
+TVAC_HOTSPOT1=750
+#TVAC 2nd BB Hot Spot; Center Pixel (Sample; Line value is fixed at 364)
+#    Hot Spot is a 50x50 Temp-average centered over a TVAC BB in scan 2 of 44.
+TVAC_HOTSPOT2=2975
+
+#Apply 12u Band6 linearity correction
+#    Fix non-linearity in 12u Band; Corrections provided by Bill Johnson.
+#    Correction is a "wedge" with fixed Sample/pixel increment (SINC), and
+#      shouldn't change, but the Sample=1 "IVAL" could slide either way.
+#    Original Wedge: SS_1=-0.2360; ES_5400=0.0; Increment=0.236/5400=0.0000437037/pxl
+#    Pre-Launch Adjustment Shift: Move Wedge Pixel_3801 to 1; i.e., SS_1=-0.0698952
+#Default/No-Correction (Obsolete)
+#    B6IVAL=0.0
+#    B6SINC=0.0
+#Original Wedge Correction (Obsolete)
+#    B6IVAL=-0.2360
+#    B6SINC=0.000043703704
+#Pre-Launch Wedge-Shifted Correction
+B6IVAL=-0.0698952
+B6SINC=0.000043703704
+
+#Apply Linearity corrections to Bands 2-5 as needed (Default/No-Correction)
+#Band 1 SWIR follows a different processing path; No linearity Correction
+B2IVAL=0.0
+B2SINC=0.0
+B3IVAL=0.0
+B3SINC=0.0
+B4IVAL=0.0
+B4SINC=0.0
+B5IVAL=0.0
+B5SINC=0.0
+
+#================================
+#Planck Constants and Parameters:
+
+FIRST_CONSTANT_C1=1.191042E08
+SECOND_CONSTANT_C2=14387.752
+WATTS_CONVERT=8.73068E-13
+ITERATION_TOLERANCE=0.00000001
+
+#================================
+#ECOSTRESS Filter Bandwidth Parameters (shortest to longest)
+#B1 SWIR is not Calibrated.
+#Updated SRF Functions from IOC
+
+B1_CW=1.6601
+B1_BW=0.3678
+B1_LW=1.4762
+B1_HW=1.8440
+B2_CW=8.2900
+B2_BW=0.3540
+B2_LW=8.1130
+B2_HW=8.4670
+B3_CW=8.7800
+B3_BW=0.3100
+B3_LW=8.6250
+B3_HW=8.9350
+B4_CW=9.2000
+B4_BW=0.3960
+B4_LW=9.0020
+B4_HW=9.3980
+B5_CW=10.490
+B5_BW=0.4100
+B5_LW=10.285
+B5_HW=10.695
+B6_CW=12.090
+B6_BW=0.6110
+B6_LW=11.7845
+B6_HW=12.3955
+
+#=============================================================
